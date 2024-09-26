@@ -91,8 +91,8 @@ def transform_bronze_to_silver(conn, batch_size=1000):
             # Extract the body content and content type
             body = raw_email.get('body', {})
             bodyContentType = body.get('contentType', 'text')
-            bodyContent = body.get('content', '')
-         
+            bodyContent = clean_html(body.get('content', ''))
+            bodyCleaned = clean_html(body.get('content', ''))
             # Process the email to extract entities from both the subject and body
             subject_entities, body_entities = ner_processing(subject, bodyContent)
 
@@ -118,10 +118,10 @@ def transform_bronze_to_silver(conn, batch_size=1000):
     hasAttachments, internetMessageId, subject, bodyPreview, importance, parentFolderId, conversationId,
     conversationIndex, isDeliveryReceiptRequested, isReadReceiptRequested, isRead, isDraft, webLink,
     inferenceClassification, bodyContentType, bodyContent, sender_name, sender_address, from_name,
-    from_address, toRecipients, ccRecipients, bccRecipients, replyTo, flagStatus,json.dumps(subject_entities),json.dumps(body_entities)
+    from_address, toRecipients, ccRecipients, bccRecipients, replyTo, flagStatus,bodyCleaned,json.dumps(subject_entities),json.dumps(body_entities)
         )
             #print(values)
-            #print(f"Length of values tuple: {len(values)}")  # Should be 32
+            #print(f"Length of values tuple: {len(values)}")  # Should be 35
 
             # Insert the transformed data into the Silver table
             cursor.execute('''
@@ -130,9 +130,9 @@ def transform_bronze_to_silver(conn, batch_size=1000):
                     hasAttachments, internetMessageId, subject, bodyPreview, importance, parentFolderId, conversationId, 
                     conversationIndex, isDeliveryReceiptRequested, isReadReceiptRequested, isRead, isDraft, webLink, 
                     inferenceClassification, bodyContentType, bodyContent, sender_name, sender_address, from_name, 
-                    from_address, toRecipients, ccRecipients, bccRecipients, replyTo, flagStatus,subject_entities,body_entities
+                    from_address, toRecipients, ccRecipients, bccRecipients, replyTo, flagStatus,bodyCleaned,subject_entities,body_entities
                 ) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?,?,?,?)
             ''', values)
 
         # Commit the batch to the database

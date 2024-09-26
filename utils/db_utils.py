@@ -63,6 +63,7 @@ def init_silver_tables(conn):
     bccRecipients TEXT,                        -- BCC Recipients (can be stored as JSON)
     replyTo TEXT,                              -- Reply-to information (can be stored as JSON)
     flagStatus TEXT,                            -- Flag status (e.g., notFlagged, complete),
+    bodyCleaned TEXT,                          -- Cleaned version of the email body
     subject_entities TEXT,                     -- JSON field for entities extracted from the subject
     body_entities TEXT                         -- JSON field for entities extracted from the body
 );

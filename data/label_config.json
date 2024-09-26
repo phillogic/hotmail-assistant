@@ -1,0 +1,106 @@
+[
+  {
+    "id": 11,
+    "text": "PERSON",
+    "prefixKey": null,
+    "suffixKey": "0",
+    "backgroundColor": "#73D8FF",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 12,
+    "text": "DATE",
+    "prefixKey": null,
+    "suffixKey": "1",
+    "backgroundColor": "#AEA1FF",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 13,
+    "text": "ORG",
+    "prefixKey": null,
+    "suffixKey": "2",
+    "backgroundColor": "#FA28FF",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 14,
+    "text": "BILLNUMBER",
+    "prefixKey": null,
+    "suffixKey": "3",
+    "backgroundColor": "#FA28FF",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 15,
+    "text": "SEASON",
+    "prefixKey": null,
+    "suffixKey": "4",
+    "backgroundColor": "#FA28FF",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 16,
+    "text": "EVENT",
+    "prefixKey": null,
+    "suffixKey": "5",
+    "backgroundColor": "#FA28FF",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 17,
+    "text": "MONEY",
+    "prefixKey": null,
+    "suffixKey": "6",
+    "backgroundColor": "#653294",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 18,
+    "text": "QUANTITY",
+    "prefixKey": null,
+    "suffixKey": "7",
+    "backgroundColor": "#68CCCA",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 19,
+    "text": "TIME",
+    "prefixKey": null,
+    "suffixKey": "8",
+    "backgroundColor": "#AB149E",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 20,
+    "text": "PRODUCT",
+    "prefixKey": null,
+    "suffixKey": "9",
+    "backgroundColor": "#FCC400",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 21,
+    "text": "GPE",
+    "prefixKey": null,
+    "suffixKey": "a",
+    "backgroundColor": "#68BC00",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 22,
+    "text": "FAC",
+    "prefixKey": null,
+    "suffixKey": "b",
+    "backgroundColor": "#F44E3B",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 23,
+    "text": "LOC",
+    "prefixKey": null,
+    "suffixKey": null,
+    "backgroundColor": "#194D33",
+    "textColor": "#ffffff"
+  }
+]
