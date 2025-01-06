@@ -1,11 +1,74 @@
 # Table of Contents
-1. [Folder Structure](#folder-structure)
-2. [File Architecture](#file-architecture)
-3. [Bronze Software Architecture](#bronze-software-architecture)
+- [Table of Contents](#table-of-contents)
+- [Approach for Email Classification and NER Extraction](#approach-for-email-classification-and-ner-extraction)
+  - [Objective](#objective)
+  - [**Bronze Layer**](#bronze-layer)
+  - [**Silver Layer**](#silver-layer)
+  - [**AI Enhancement**](#ai-enhancement)
+  - [**Future Enhancements**](#future-enhancements)
+- [System Architecture](#system-architecture)
+- [Folder Structure](#folder-structure)
+- [File System Architecture](#file-system-architecture)
+- [Software Components Architecture](#software-components-architecture)
 
 <br>
 <hr>
 
+
+# Approach for Email Classification and NER Extraction
+
+## Objective
+Develop a pipeline to classify emails (e.g., **donation-related**, **bill-related**) and extract **named entities** from email content (subject and body) for downstream AI/ML processing.
+
+---
+
+## **Bronze Layer**
+- **Purpose**: Store raw emails fetched from the Microsoft Graph API.
+- **Process**:
+  - Emails are fetched using the Microsoft Graph API.
+  - Raw data is stored in the `bronze_emails` SQLite table for durability and incremental processing.
+
+---
+
+## **Silver Layer**
+- **Purpose**: Transform raw email data, perform NER, classify emails, and store enriched results.
+- **Process**:
+  1. **Transformations**:
+     - Extract and clean **subject** and **body** (e.g., remove HTML tags using BeautifulSoup).
+     - Perform **Named Entity Recognition (NER)** using SpaCy to extract entities like **ORG**, **MONEY**, **DATE**, etc.
+     - Use a custom SpaCy **classification model** to classify emails as:
+       - **Donation-related**
+       - **Bill-related**
+  2. **Storage**:
+     - Store transformed data in the `silver_emails` SQLite table.
+     - Schema includes:
+       - **Metadata**: `email_id`, `subject`, `receivedDateTime`, etc.
+       - **Extracted Entities**: `subject_entities`, `body_entities`.
+       - **Classification Flags**: `donation_relevant`, `bill_relevant`.
+
+---
+
+## **AI Enhancement**
+- **Fine-Tuning SpaCy**:
+  1. **NER Fine-Tuning**:
+     - Export emails from the **Bronze layer**.
+     - Annotate entities (e.g., **DONATION**, **BILL**, **ORG**) using **Doccano**.
+     - Train a custom SpaCy NER pipeline using the annotated data.
+  2. **Classification Fine-Tuning**:
+     - Use Doccano-annotated emails to train SpaCy’s `textcat` model for classification.
+
+- **Integrated Pipeline**:
+  - Incorporate fine-tuned NER and classification models into Silver layer processing.
+
+---
+
+## **Future Enhancements**
+1. **Gold Layer**:
+   - Aggregate data to generate actionable insights (e.g., donation summaries, tax reports).
+   - En
+
+</br>
+</hr>
 
 # System Architecture
 ```mermaid
@@ -171,3 +234,7 @@ graph TD;
 
 
 ```
+
+
+
+

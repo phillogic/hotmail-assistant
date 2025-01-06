@@ -1,2 +1,7 @@
 msal
 requests
+jupyterlab
+notebook
+pandas
+ipywidgets
+pandas_ui
